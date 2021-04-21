@@ -1,27 +1,40 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Card from './Card';
 import Footer from './Footer';
+import useParseDate from './helpers/useParseDate';
 
 function App() {
+  const [currentTime, setCurrentTime] = useState(Date.now());
+  const [endTime] = useState(new Date(2021, 4, 22));
+
+
+  useEffect(() => {
+    const handle = setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 1000)
+    return (() => {
+      clearInterval(handle)
+    })
+  }, [currentTime, endTime]);
+
+  const { days, hours, minutes, seconds, isFinished } = useParseDate(currentTime, endTime);
+  if (isFinished) {
+    return (
+      <StyledContainer>
+        <h1>Countdown complete!</h1>
+      </StyledContainer>
+    )
+  }
+
   return (
     <StyledContainer>
       <h1>We're Launching Soon</h1>
       <div className="timer">
-        <div className="card">
-          <h2>08</h2>
-          <p>days</p>
-        </div>
-        <div className="card">
-          <h2>23</h2>
-          <p>hours</p>
-        </div>
-        <div className="card">
-          <h2>55</h2>
-          <p>minutes</p>
-        </div>
-        <div className="card">
-          <h2>41</h2>
-          <p>seconds</p>
-        </div>
+        <Card digit={days} unit="days" />
+        <Card digit={hours} unit="hours" />
+        <Card digit={minutes} unit="minutes" />
+        <Card digit={seconds} unit="seconds" />
       </div>
       <Footer />
 
