@@ -37,7 +37,6 @@ function App() {
         <Card digit={seconds} unit="seconds" />
       </div>
       <Footer />
-
     </StyledContainer>
   );
 }
@@ -52,18 +51,19 @@ const StyledContainer = styled.div`
   justify-content: center;
 
   h1 {
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    position: absolute;
+    top: 17%;
+    font-size: 1.3rem;
   }
 
   .timer {
     display: flex;
   }
   
-  .card {
-    width: 200px;
-    background: grey;
-    margin: 0 15px;
-  }
 `;
 
 
