@@ -14,21 +14,23 @@ const useParseDate = (currentTime, endTime) => {
     // calculate days
     let days = Math.floor(difference / (86400));
     difference %= 86400;
-    setDays(days);
+
+    setDays(('0' + days).slice(-2));
 
     // calculate hours
     let hours = Math.floor(difference / (60 * 60));
     difference %= 3600;
-    setHours(hours);
+    setHours(('0' + hours).slice(-2));
 
     // calculate minutes
     let minutes = Math.floor(difference / 60);
     difference %= 60;
-    setMinutes(minutes);
+    setMinutes(('0' + minutes).slice(-2));
 
     // calculate seconds
     let seconds = difference % 60;
-    setSeconds(seconds);
+    setSeconds(('0' + seconds).slice(-2));
+
   }, [currentTime, endTime])
 
 

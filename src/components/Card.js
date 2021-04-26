@@ -1,26 +1,43 @@
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components";
 
 const Card = ({ digit, unit }) => {
+  const [active, setActive] = useState(false);
+  const prevCountRef = useRef();
+  useEffect(() => {
+    const prevCount = prevCountRef.current;
+    if (prevCount !== digit) {
+      setActive(true);
+    }
+  }, [digit]);
+
+
+  const animationEnd = (e) => {
+    setActive(false)
+    prevCountRef.current = digit;
+  }
+
+
   return (
     <StyledCard>
-      <div class="countdown">
-        <div class="top">
-          <p class="digit">{digit}</p>
+      <div className="back">
+        <div className="top">
+          <p className="digit">{digit}</p>
         </div>
-        <div class="bottom">
-          <p class="digit">{digit}</p>
-        </div>
-      </div>
-      <div class="flip">
-        <div class="top">
-          <p class="digit">{digit}</p>
-        </div>
-        <div class="bottom">
-          <p class="digit">{digit}</p>
+        <div className="bottom">
+          <p className="digit">{prevCountRef.current}</p>
         </div>
       </div>
-      <p class="unit">{unit}</p>
+      <div className="front">
+        <div onAnimationEnd={animationEnd} className={`top ${active ? 'active' : ''}`}>
+          <p className="digit">{prevCountRef.current}</p>
+        </div>
+        <div onAnimationEnd={animationEnd} className={`bottom ${active ? 'active' : ''}`}>
+          <p className="digit">{digit}</p>
+        </div>
+      </div>
+
+      <p className="unit">{unit}</p>
     </StyledCard>
   )
 }
@@ -31,6 +48,7 @@ const StyledCard = styled.div`
     width: 150px;
     margin: 0 15px;
     position: relative;
+    
     .top {
       background: #2C2C44;
       height: 70px;
@@ -39,14 +57,15 @@ const StyledCard = styled.div`
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      position: relative;
       &::before {
         content: "";
         position: absolute;
         width: 8px;
         height: 8px;
-        background: black;
+        background: var(--very-dark-black-blue);
         left: 0;
-        bottom: 50%;
+        bottom: 0%;
         border-radius: 0 100% 0 0;
       }
       &::after {
@@ -54,17 +73,18 @@ const StyledCard = styled.div`
         position: absolute;
         width: 8px;
         height: 8px;
-        background: black;
+        background: var(--very-dark-black-blue);
         border-radius: 100% 0 0 0;
         right: 0%;
-        bottom: 50%;
+        bottom: 0%;
       }
       .digit {
         position: absolute;
-        top: 12%;
+        top: 25%;
       }
     }
     .bottom {
+      margin-top: 1px;
       background: #34364F;
       height: 70px;
       width: 150px;
@@ -73,32 +93,49 @@ const StyledCard = styled.div`
       justify-content: center;
       overflow: hidden;
       align-items: center;
+      position: relative;
       &::before {
         content: "";
         position: absolute;
         width: 8px;
         height: 8px;
-        background: black;
+        background: var(--very-dark-black-blue);
         border-radius: 0 0 100% 0;
         left: 0%;
-        top: 50%;
+        top: 0%;
       }
       &::after {
         content: "";
         position: absolute;
         width: 8px;
         height: 8px;
-        background: black;
+        background: var(--very-dark-black-blue);
         border-radius: 0 0 0 100%;
         right: 0%;
-        top: 50%;
+        top: 0%;
       }
       .digit {
         position: absolute;
-        bottom: 13%;
+        bottom: 25%;
       }
     }
-    .flip {
+    .front {
+      perspective: 1000px;
+      .top {
+        animation: none;
+        transform-origin: bottom;
+        &.active {
+          animation: "top-to-bottom" 0.8s 1;
+        }
+      }
+      .bottom {
+        transform-origin: top;
+        &.active {
+          animation: "bottom-to-top" 0.6s 1;
+        }
+      }
+    }
+    .back {
       position: absolute;
       top: 0;
     }

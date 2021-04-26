@@ -16,10 +16,39 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: url("../bg-stars.svg") top/100% 80% no-repeat, url("../pattern-hills.svg") bottom/100% 20% no-repeat, linear-gradient(to bottom, #1e1e28, #251d2c);
+    background: url("../bg-stars.svg") top/100% 80% no-repeat, url("../pattern-hills.svg") bottom/100% 20% repeat-x, linear-gradient(to bottom, #1e1e28, #251d2c);
     font-size: 14px;
     font-family: 'Red Hat Text', sans-serif;
-
   }
+
+  @keyframes top-to-bottom {
+  0% {
+    -webkit-transform: rotate3d(0);
+            transform: rotate3d(0);
+  }
+  50% {
+    -webkit-transform: rotate3d(-1, 0, 0, 90deg);
+            transform: rotate3d(-1, 0, 0, 90deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(-1, 0, 0, 90deg);
+            transform: rotate3d(-1, 0, 0, 90deg);
+  }
+}
+@keyframes bottom-to-top {
+  0% {
+    -webkit-transform: rotate3d(1, 0, 0, 90deg);
+            transform: rotate3d(1, 0, 0, 90deg);
+  }
+  50% {
+    -webkit-transform: rotate3d(1, 0, 0, 90deg);
+            transform: rotate3d(1, 0, 0, 90deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0);
+            transform: rotate3d(0);
+  }
+}
+
 `;
 export default GlobalStyle;

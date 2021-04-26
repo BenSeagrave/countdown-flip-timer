@@ -7,6 +7,7 @@ import useParseDate from './helpers/useParseDate';
 function App() {
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [endTime] = useState(new Date(2021, 4, 22));
+  // const [active, setActive] = useState(false);
 
 
   useEffect(() => {
@@ -14,15 +15,15 @@ function App() {
       setCurrentTime(Date.now());
     }, 1000)
     return (() => {
-      clearInterval(handle)
+      clearInterval(handle);
     })
-  }, [currentTime, endTime]);
-
+  }, [currentTime]);
   const { days, hours, minutes, seconds, isFinished } = useParseDate(currentTime, endTime);
   if (isFinished) {
     return (
       <StyledContainer>
         <h1>Countdown complete!</h1>
+        {/* CONFETTI */}
       </StyledContainer>
     )
   }
@@ -49,9 +50,8 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  
   h1 {
-    /* margin-bottom: 100px; */
     color: white;
     text-transform: uppercase;
     letter-spacing: 0.5rem;
@@ -63,6 +63,7 @@ const StyledContainer = styled.div`
   .timer {
     display: flex;
   }
+  
   
 `;
 

@@ -11,10 +11,12 @@ const Footer = () => {
 }
 
 const StyledFooter = styled.div`
-  background-image: url('../pattern-hills.svg');
   position: fixed;
   top: 90%;
-
+  display: flex;
+  width: 12%;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export default Footer
