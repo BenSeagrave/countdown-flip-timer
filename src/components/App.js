@@ -7,8 +7,6 @@ import useParseDate from './helpers/useParseDate';
 function App() {
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [endTime] = useState(new Date(2021, 4, 22));
-  // const [active, setActive] = useState(false);
-
 
   useEffect(() => {
     const handle = setInterval(() => {
@@ -43,7 +41,6 @@ function App() {
 }
 
 const StyledContainer = styled.div`
-  width: 800px;
   height: 100vh;
   margin: 0 auto;
   display: flex;
@@ -57,15 +54,22 @@ const StyledContainer = styled.div`
     letter-spacing: 0.5rem;
     position: absolute;
     top: 17%;
-    font-size: 1.3rem;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 2rem;
+    @media screen and (min-width: 50em) {
+      font-size: 1.6rem;
+    }
   }
-
+  
   .timer {
     display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    width: 100%;
   }
-  
+
   
 `;
-
 
 export default App;

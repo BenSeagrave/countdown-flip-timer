@@ -11,12 +11,10 @@ const Card = ({ digit, unit }) => {
     }
   }, [digit]);
 
-
   const animationEnd = (e) => {
     setActive(false)
     prevCountRef.current = digit;
   }
-
 
   return (
     <StyledCard>
@@ -45,112 +43,163 @@ const Card = ({ digit, unit }) => {
 export default Card
 
 const StyledCard = styled.div`
-    width: 150px;
-    margin: 0 15px;
+  /* width: 150px; */
+  width: 18%;
+  max-width: 100px;
+  margin: 0 0.5rem;
+  position: relative;
+  text-align: center;
+
+  @media screen and (min-width: 50em) {
+      margin: 0 1.5rem;
+      max-width: 150px;
+  } 
+  
+  .top {
+    background: #2C2C44;
+    height: 30px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     position: relative;
-    
-    .top {
-      background: #2C2C44;
+    @media screen and (min-width: 50em) {
+      width: 150px;
       height: 70px;
-      border-radius: 10px 10px 0 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-      &::before {
-        content: "";
-        position: absolute;
+
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--very-dark-black-blue);
+      left: 0;
+      bottom: 0%;
+      border-radius: 0 100% 0 0;
+
+      @media screen and (min-width: 50em) {
         width: 8px;
         height: 8px;
-        background: var(--very-dark-black-blue);
-        left: 0;
-        bottom: 0%;
-        border-radius: 0 100% 0 0;
       }
-      &::after {
-        content: "";
-        position: absolute;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--very-dark-black-blue);
+      border-radius: 100% 0 0 0;
+      right: 0%;
+      bottom: 0%;
+
+      @media screen and (min-width: 50em) {
         width: 8px;
         height: 8px;
-        background: var(--very-dark-black-blue);
-        border-radius: 100% 0 0 0;
-        right: 0%;
-        bottom: 0%;
       }
-      .digit {
-        position: absolute;
-        top: 25%;
+    }
+    .digit {
+      position: absolute;
+      top: 29%;
+      color: hsla(var(--soft-red-hsl), 0.75);
+    }
+  }
+  .bottom {
+    margin-top: 1px;
+    background: #34364F;
+    height: 30px;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    position: relative;
+
+    @media screen and (min-width: 50em) {
+      width: 150px;
+      height: 70px;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--very-dark-black-blue);
+      border-radius: 0 0 100% 0;
+      left: 0%;
+      top: 0%;
+
+      @media screen and (min-width: 50em) {
+        width: 8px;
+        height: 8px;
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--very-dark-black-blue);
+      border-radius: 0 0 0 100%;
+      right: 0%;
+      top: 0%;
+
+      @media screen and (min-width: 50em) {
+        width: 8px;
+        height: 8px;
+      }
+    }
+    .digit {
+      position: absolute;
+      bottom: 30%;
+    }
+  }
+  .front {
+    perspective: 1000px;
+    .top {
+      animation: none;
+      transform-origin: bottom;
+      &.active {
+        animation: "top-to-bottom" 0.8s 1;
       }
     }
     .bottom {
-      margin-top: 1px;
-      background: #34364F;
-      height: 70px;
-      width: 150px;
-      border-radius: 0 0 10px 10px;
-      display: flex;
-      justify-content: center;
-      overflow: hidden;
-      align-items: center;
-      position: relative;
-      &::before {
-        content: "";
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: var(--very-dark-black-blue);
-        border-radius: 0 0 100% 0;
-        left: 0%;
-        top: 0%;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: var(--very-dark-black-blue);
-        border-radius: 0 0 0 100%;
-        right: 0%;
-        top: 0%;
-      }
-      .digit {
-        position: absolute;
-        bottom: 25%;
+      transform-origin: top;
+      &.active {
+        animation: "bottom-to-top" 0.6s 1;
       }
     }
-    .front {
-      perspective: 1000px;
-      .top {
-        animation: none;
-        transform-origin: bottom;
-        &.active {
-          animation: "top-to-bottom" 0.8s 1;
-        }
-      }
-      .bottom {
-        transform-origin: top;
-        &.active {
-          animation: "bottom-to-top" 0.6s 1;
-        }
-      }
+  }
+  .back {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+  }
+  .unit {
+    margin-top: 10px;
+    font-size: 0.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--grayish-blue);
+    letter-spacing: 0.2rem;
+    text-align: center;
+
+    @media screen and (min-width: 50em) {
+    font-size: 0.8rem;
+    letter-spacing: 0.5rem;
     }
-    .back {
-      position: absolute;
-      top: 0;
+  }
+  .digit {
+    color: var(--soft-red);
+    font-size: 2rem;
+    font-weight: bold;
+    @media screen and (min-width: 50em) {
+      font-size: 4.8rem;
     }
-    .unit {
-      margin-top: 30px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: var(--grayish-blue);
-      letter-spacing: 0.5rem;
-      text-align: center;
-    }
-    .digit {
-      color: var(--soft-red);
-      font-size: 5rem;
-      font-weight: bold;
-    }
+  }
+
+  
 `;
