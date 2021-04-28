@@ -24,7 +24,6 @@ const StyledFooter = styled.div`
      margin: 0 15px;
     &:hover {
       cursor: pointer;
-
     }
      &:hover path {
        fill: var(--soft-red);

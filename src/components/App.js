@@ -22,6 +22,7 @@ function App() {
       <StyledContainer>
         <h1>Countdown complete!</h1>
         {/* CONFETTI */}
+        {/* Add option to start timer again */}
       </StyledContainer>
     )
   }
@@ -65,7 +66,6 @@ const StyledContainer = styled.div`
   .timer {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     width: 100%;
   }
 
