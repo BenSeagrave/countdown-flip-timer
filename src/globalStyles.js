@@ -17,8 +17,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: #251d2c;
-    background: url("../pattern-hills.svg") bottom/100% repeat-x, url("../bg-stars.svg") top/100% 80% repeat, linear-gradient(to bottom, #1e1e28, #251d2c);
+    background: url("./pattern-hills.svg") bottom/100% repeat-x, url("./bg-stars.svg") top/100% 80% repeat, linear-gradient(to bottom, #1e1e28, #251d2c);
     font-size: 14px;
     font-family: 'Red Hat Text', sans-serif;
     overflow: hidden;

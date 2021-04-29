@@ -43,7 +43,6 @@ const Card = ({ digit, unit }) => {
 export default Card
 
 const StyledCard = styled.div`
-  /* width: 150px; */
   width: 18%;
   max-width: 100px;
   margin: 0 0.5rem;
