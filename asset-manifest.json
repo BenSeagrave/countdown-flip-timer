@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/countdown-flip-timer/static/js/main.b69ea3f9.chunk.js",
-    "main.js.map": "/countdown-flip-timer/static/js/main.b69ea3f9.chunk.js.map",
+    "main.js": "/countdown-flip-timer/static/js/main.ba9ebaf9.chunk.js",
+    "main.js.map": "/countdown-flip-timer/static/js/main.ba9ebaf9.chunk.js.map",
     "runtime-main.js": "/countdown-flip-timer/static/js/runtime-main.4001395b.js",
     "runtime-main.js.map": "/countdown-flip-timer/static/js/runtime-main.4001395b.js.map",
     "static/js/2.aec15ee7.chunk.js": "/countdown-flip-timer/static/js/2.aec15ee7.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.4001395b.js",
     "static/js/2.aec15ee7.chunk.js",
-    "static/js/main.b69ea3f9.chunk.js"
+    "static/js/main.ba9ebaf9.chunk.js"
   ]
 }
